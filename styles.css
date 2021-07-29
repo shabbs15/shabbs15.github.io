@@ -5,14 +5,35 @@ body {
     background-color: rgb(247, 246, 241);
 }
 
-div {
-    padding-bottom: 20px;
-}
 
 a {
     color: black;
 }
 
-a:hover {
+a:hover{
     color:rgb(175, 174, 174);
 }
+
+
+h1 {
+    font-size: large;
+    text-decoration: underline;
+}
+
+
+.codeBlock {
+    background-color: #F0EFEB;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    
+}
+
+.paddingBump {
+    padding-left: 21px;
+}
+
+.paddingDown {
+    padding-bottom: 20px;
+}
+
+/* #F0EFEB, */
