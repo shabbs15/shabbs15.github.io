@@ -32,6 +32,12 @@ h1 {
     padding-left: 21px;
 }
 
+p {margin: 0px;}
+
+#topmargin {
+    margin-top: 1em;
+}
+
 .paddingDown {
     padding-bottom: 20px;
 }
