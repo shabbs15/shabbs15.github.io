@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, session
+import requests as req
 
 app = Flask(__name__)
 app.secret_key = "hello"
@@ -46,6 +47,11 @@ def user():
         return f"<h1>{user}</h1>"
     else:
         return redirect(url_for("login"))
+
+@app.route("/ip")
+def ip():
+    r = req.get("http://ipinfo.io/"+ "151.101.193.69").json() # request.remote_addr
+    return r["city"] +", " + r["country"] + " this you? <br><br> Sorry this is saved mon ami, better chance next time"
 
 @app.route("/logout")
 def logout():
