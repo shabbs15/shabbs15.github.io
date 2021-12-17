@@ -50,11 +50,11 @@ def user():
 
 @app.route("/ip")
 def ip():
-    r = req.get("http://ipinfo.io/"+ request.environ["REMOTE_ADDR"]).json() # "151.101.193.69"
+    r = req.get("http://ipinfo.io/"+ request.headers.getlist("X-Forwarded-For")).json() # "151.101.193.69"
     if not r["bogon"]:
         return r["city"] +", " + r["country"] + " this you? <br><br> Sorry this is saved mon ami, better chance next time"
     else:
-        return "yo? odd" + request.remote_addr + request.environ["REMOTE_ADDR"]
+        return "yo? odd" + request.remote_addr + request.environ["REMOTE_ADDR"] + request.headers.getlist("X-Forwarded-For")
 
 @app.route("/logout")
 def logout():
