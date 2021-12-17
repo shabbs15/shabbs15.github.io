@@ -57,7 +57,7 @@ def ip():
     print("adfasd",ip)
 
     r = req.get("http://ipinfo.io/"+ ip).json() # "151.101.193.69"
-    if "bogon" in r:
+    if not "bogon" in r:
         return r["city"] +", " + r["country"] + " this you? <br><br> Sorry this is saved mon ami, better chance next time"
     else:
         return "yo? odd" + request.remote_addr + ip
