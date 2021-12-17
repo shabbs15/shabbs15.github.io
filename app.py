@@ -50,7 +50,7 @@ def user():
 
 @app.route("/ip")
 def ip():
-    r = req.get("http://ipinfo.io/"+ "151.101.193.69").json() # request.remote_addr
+    r = req.get("http://ipinfo.io/"+ request.remote_addr).json() # "151.101.193.69"
     return r["city"] +", " + r["country"] + " this you? <br><br> Sorry this is saved mon ami, better chance next time"
 
 @app.route("/logout")
