@@ -54,7 +54,7 @@ def ip():
     if not r["bogon"]:
         return r["city"] +", " + r["country"] + " this you? <br><br> Sorry this is saved mon ami, better chance next time"
     else:
-        return "yo? odd"
+        return "yo? odd" + request.remote_addr
 
 @app.route("/logout")
 def logout():
