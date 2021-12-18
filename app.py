@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, redirect, url_for, session, flash
 import requests as req
 
 app = Flask(__name__)
@@ -30,32 +30,24 @@ def about():
 
 @app.route("/login", methods=["POST", "GET"])
 def login():
-    print("loginging in")
     if request.method=="POST":
         user = request.form["nm"]
         session["user"] = user
+        flash("logged in, well done")
         return redirect(url_for("user", usr=user))
     else:
-        if "user" in session:
-            return redirect(url_for("user"))
         return render_template("login.html", title="login")
 
 @app.route("/user")
 def user():
-    if  "user" in session:
+    if "user" in session:
         user = session["user"]
-        return f"<h1>{user}</h1>"
+        return render_template("user.html", name=user)
     else:
         return redirect(url_for("login"))
 
 @app.route("/ip")
 def ip():
-    print(request.remote_addr)
-    ip = request.headers.getlist("X-Forwarded-For")[0]
-    print("asdf",ip)
-    ip = ip.split(":")[0]
-    print("adfasd",ip)
-
     r = req.get("http://ipinfo.io/"+ ip).json() # "151.101.193.69"
     if not "bogon" in r:
         return r["city"] +", " + r["country"] + " this you? <br><br> Sorry this is saved mon ami, better chance next time"
@@ -64,7 +56,9 @@ def ip():
 
 @app.route("/logout")
 def logout():
-    session.pop("user", None)
+    if "user" in session:   
+        session.pop("user", None)
+        flash("You have been logged out!")
     return redirect(url_for("login"))
 
 if __name__ == "__main__":

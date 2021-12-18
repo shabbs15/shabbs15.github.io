@@ -3,7 +3,7 @@
 {% block content %}
 <form method="post">
     <p>Name: </p>
-    <p><input type="text" name="nm"></p>
+    <p><input type="text" name="nm" minlength="2" maxlength="10" required></p>
     <p><input type="submit" name="submit"></p>
 </form>
 {% endblock %}
