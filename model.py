@@ -16,7 +16,7 @@ class model():
 
     def initDatabase(self):
         print("ran ran ran")
-        cursor.execute("""
+        self.cursor.execute("""
         CREATE TABLE wall(
             PostId integer primary key,
             Message Text,
