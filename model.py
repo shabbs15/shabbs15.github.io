@@ -7,6 +7,19 @@ class model():
         self.conn = sqlite3.connect("wall.db", check_same_thread=False)
         self.cursor = self.conn.cursor()
 
+        self.cursor.execute("SELECT * FROM sqlite_master WHERE type = 'table' AND name = 'wall'")
+        if self.cursor.fetchone() == None:
+            self.initDatabase()
+
+    def initDatabase(self):
+        cursor.execute("""
+        CREATE TABLE wall(
+            PostId integer primary key,
+            Message Text,
+            User Text,
+            Date Text
+        )""")
+
 
     def getPosts(self):
         self.cursor.execute("""
