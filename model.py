@@ -9,9 +9,13 @@ class model():
 
         self.cursor.execute("SELECT * FROM sqlite_master WHERE type = 'table' AND name = 'wall'")
         if self.cursor.fetchone() == None:
+            print("yoyoyoyooyoyoyoy")
             self.initDatabase()
+        else:
+            print("homeboy I beg you")
 
     def initDatabase(self):
+        print("ran ran ran")
         cursor.execute("""
         CREATE TABLE wall(
             PostId integer primary key,
