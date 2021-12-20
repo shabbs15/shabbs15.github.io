@@ -1,5 +1,8 @@
 from flask import Flask, render_template, request, redirect, url_for, session, flash
+from model import model
+model = model()
 import requests as req
+from datetime import datetime
 
 app = Flask(__name__)
 app.secret_key = "hello"
@@ -43,6 +46,24 @@ def user():
     if "user" in session:
         user = session["user"]
         return render_template("user.html", name=user)
+    else:
+        return redirect(url_for("login"))
+
+@app.route("/wall", methods=["POST", "GET"])
+def wall():
+    if "user" in session:
+        print("yo", request.method)
+        if request.method == "POST":
+            print("item to the database", request.method)
+            post = request.form["post"]
+            user = session["user"]
+            date = datetime.today().strftime('%Y-%m-%d %H:%M')
+            model.addToTheWall(post, user, date)
+            return redirect(url_for("wall"))
+        else:
+            wallPosts = model.getPosts()
+            
+            return render_template("wall.html", posts=wallPosts)
     else:
         return redirect(url_for("login"))
 

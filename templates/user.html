@@ -2,5 +2,7 @@
 
 {% block content %}
 <p>{{ name }}</p>
+<a href= {{ url_for("wall") }}>the wall</a>
+<br>
 <a href = {{  url_for("logout")  }}>logout</p>
 {% endblock %}

@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<p>{{ name }}</p>
+
+<form method="post">
+    <p>Leave a message in the wall, be nice :)</p>
+    <textarea name="post" cols="30" rows="10"></textarea>
+    <p><input type="submit" name="submit"></p>
+</form>
+
+
+{% for post in posts %}
+    <p>By {{post[2]}} on {{post[3]}}:<br> {{post[1]}}</p>
+{% endfor %}
+
+<br>
+<a href = {{  url_for("logout")  }}>logout</p>
+{% endblock %}
