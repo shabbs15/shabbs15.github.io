@@ -1,19 +1,26 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<p>{{ name }}</p>
+<div id = "wall">
 
 <form method="post">
     <p>Leave a message in the wall, be nice :)</p>
-    <textarea name="post" cols="30" rows="10"></textarea>
-    <p><input type="submit" name="submit"></p>
+    <textarea name="post" rows="7"></textarea>
+    <input type="submit" name="submit" id="submitPost">
 </form>
 
 
 {% for post in posts %}
-    <p>By {{post[2]}} on {{post[3]}}:<br> {{post[1]}}</p>
+    <div id="wallPost">
+        <p>By {{post[2]}} on {{post[3]}}<br> 
+        <div id="wallMessage">    
+            {{post[1]}}</p>
+        </div>
+    </div>
 {% endfor %}
 
 <br>
 <a href = {{  url_for("logout")  }}>logout</p>
+
+</div>
 {% endblock %}

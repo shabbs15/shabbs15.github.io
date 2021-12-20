@@ -1,4 +1,39 @@
 body {
-    color:green;
     font-size: large;
+    font-family: Verdana;
+}
+
+#wall{
+    width:30%;
+    margin: 0px;
+    padding: 0px;
+    margin:auto;
+}
+
+#wallPost {
+    outline: 2px solid;
+}
+
+#wallMessage{
+    outline: 2px solid;
+    background-color: cornflowerblue;
+}
+
+#submitPost {
+    text-align: center;
+    margin-left: 25px;
+}
+
+textarea {
+    width: 100%;
+    font-family: Verdana;
+    resize: none;
+}
+
+textarea:focus{
+    outline:none;
+}
+
+a, a:visited {
+    color: inherit;
 }

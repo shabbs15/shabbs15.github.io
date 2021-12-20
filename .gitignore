@@ -1,4 +1,4 @@
 __pycache__/
 venv/
 dbInit.py
-wall.db
+*.db

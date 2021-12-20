@@ -7,25 +7,10 @@ from datetime import datetime
 app = Flask(__name__)
 app.secret_key = "hello"
 
-posts = [
-    {
-        "author": "Corey Schafer",
-        "title": "blog post 1",
-        "content": "first post content",
-        "date_posted": "April 20, 2018"
-    },
-    {
-        "author": "Jane Doe",
-        "title": "ecomerce",
-        "content": "check out this ecommers",
-        "date_posted": "January 24, 2014"
-    }
-]
-
 @app.route("/")
 @app.route("/home")
 def home():
-    return render_template("home.html", posts=posts)
+    return render_template("home.html")
 
 @app.route("/about")
 def about():
@@ -52,9 +37,7 @@ def user():
 @app.route("/wall", methods=["POST", "GET"])
 def wall():
     if "user" in session:
-        print("yo", request.method)
         if request.method == "POST":
-            print("item to the database", request.method)
             post = request.form["post"]
             user = session["user"]
             date = datetime.today().strftime('%Y-%m-%d %H:%M')

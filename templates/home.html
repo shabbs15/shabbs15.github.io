@@ -1,7 +1,21 @@
 {% extends "layout.html" %}
 {% block content %}
-    {% for post in posts %}
-        <h1>{{post.title}}</h1>
-        <p>By{{post.content}} on {{post.date_posted}}</p>
-    {% endfor %}
+
+    <h1>Hmm, somehow you've made it onto my website, bizarre</h1>
+    <p>Who am I?</p>
+    <p>A poet</p>
+    <p>An artist</p>
+    <p>A creator</p>
+    <p>An imaginator</p>
+    <p>lost</p>
+    <i>
+    <p>A fuck in the wind</p>
+    <p>A fly in the ointment</p>
+    <p>A monkey in the wrench</p>
+    </i>
+    <p>Seek help and you shall receive it</p>
+    <p>--------------------------------------------------------------</p>
+    <a href={{  url_for("wall")  }}>See the wall</a>
+    <br>
+    <a href={{  url_for("ip")  }}>we also track your ip, don't worry, we aren't malicious about it :)</a>
 {% endblock content %}
