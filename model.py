@@ -9,13 +9,11 @@ class model():
 
         self.cursor.execute("SELECT * FROM sqlite_master WHERE type = 'table' AND name = 'wall'")
         if self.cursor.fetchone() == None:
-            print("yoyoyoyooyoyoyoy")
             self.initDatabase()
         else:
             print("homeboy I beg you")
 
     def initDatabase(self):
-        print("ran ran ran")
         self.cursor.execute("""
         CREATE TABLE wall(
             PostId integer primary key,
@@ -34,4 +32,12 @@ class model():
 
     def addToTheWall(self, message, user, date):
         self.cursor.execute("INSERT INTO wall (Message, User, Date) VALUES (?,?,?)",(message, user, date))    
+        self.conn.commit()
+
+    def deleteRecord(self, id):
+        self.cursor.execute("""
+        DELETE FROM wall
+        WHERE PostId = ?
+        """, (id,))
+
         self.conn.commit()
