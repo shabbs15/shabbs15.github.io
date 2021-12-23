@@ -9,7 +9,6 @@ class model():
 
         self.cursor.execute("SELECT * FROM sqlite_master WHERE type = 'table' AND name = 'user'")
         if self.cursor.fetchone() == None:
-            print("resetting the database")
             self.initDatabase()
 
     def initDatabase(self):
