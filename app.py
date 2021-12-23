@@ -65,6 +65,8 @@ def wall():
 
 @app.route("/ip")
 def ip():
+    ip = request.headers.getlist("X-Forwarded-For")[0]
+    ip = ip.split(":")[0]
     r = req.get("http://ipinfo.io/"+ ip).json() # "151.101.193.69"
     if not "bogon" in r:
         return r["city"] +", " + r["country"] + " this you? <br><br> Sorry this is saved mon ami, better chance next time"
