@@ -2,21 +2,35 @@
 <html>
 <head>
     {% if title %}
-        <title>Flask Blog - {{title}}</title>
+        <title>Shabbs - {{title}}</title>
     {% else %}
-        <title>Flask blog</title>
+        <title>Shabbs</title>
     {% endif %}
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-    {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            {% for msg in messages %}
-                <p>{{msg}}</p>
 
-            {% endfor %}
-        {% endif %}
-    {% endwith %}
+    {% if first %}
+        <div id = "divClose">
+            <div id = "frontSide">
+                Older than 17?
+
+                <span id = "frontYes" onclick='this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode); return false;'>
+                    ___
+                </span>
+                <a class = "closeA" id = "frontNo" href = "https://twitter.com/iamshabbs15">
+                    ___
+                </a> 
+            </div>
+        </div>
+    {% endif %}
+
+    {% block title %}{% endblock %}
+
+    {% extends "flash.html" %}
+
     {% block content %}{% endblock %}
+
+    
 </body>
 </html>

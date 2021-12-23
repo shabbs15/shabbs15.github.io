@@ -3,24 +3,42 @@
 {% block content %}
 <div id = "wall">
 
+<h1>THE WALL</h1>
+
 <form method="post">
     <p>Leave a message in the wall, be nice :)</p>
     <textarea name="post" rows="7"></textarea>
-    <input type="submit" name="submit" id="submitPost">
+    <input type="submit" name="name" id="submitPost">
 </form>
 
 
 {% for post in posts %}
+    <br>
     <div id="wallPost">
-        <p>By {{post[2]}} on {{post[3]}}<br> 
+        <p>By {{post[2]}} on {{post[3]}} <br> 
         <div id="wallMessage">    
-            {{post[1]}}</p>
+            <div id="wallActualMessage">{{post[1]}} </div>
+
+            {% if admin %}
+
+            <div id = "deletePost">
+            <form method="post">
+                <input type="hidden" name="key" value = {{post[0]}} >
+                <input type="submit" name = "delete" value = "delete aa" id="deleteButton">
+            </form>
+            </div>
+
+            {% endif %}
         </div>
     </div>
 {% endfor %}
 
 <br>
-<a href = {{  url_for("logout")  }}>logout</p>
+<a href = {{  url_for("logout")  }}>logout</a>
+
+<br><br>
+<footer><i>does this make me a full stack dev now?</i></footer>
+
 
 </div>
 {% endblock %}

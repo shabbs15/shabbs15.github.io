@@ -7,29 +7,37 @@ from datetime import datetime
 app = Flask(__name__)
 app.secret_key = "hello"
 
+@app.before_request
+def before_request():
+    if not "first" in session:
+        session["first"] = True
+        return redirect(url_for("home", first=True))
+
 @app.route("/")
 @app.route("/home")
 def home():
-    return render_template("home.html")
-
-@app.route("/about")
-def about():
-    return render_template("about.html", title="about")
+    return render_template("home.html", first = "first" in request.args)
 
 @app.route("/login", methods=["POST", "GET"])
 def login():
     if request.method=="POST":
         user = request.form["nm"]
-        session["user"] = user
-        flash("logged in, well done")
-        return redirect(url_for("user", usr=user))
+        password = request.form["code"]
+        if model.login(user, password):
+            session["user"] = user
+            flash("logged in, well done")
+            return redirect(url_for("user"))
+        else:
+            flash("Login failed homeboy, stop tryna be a hackster")
+            return redirect(url_for("login"))
     else:
-        return render_template("login.html", title="login")
+        return render_template("login.html", title = "login")
 
 @app.route("/user")
 def user():
     if "user" in session:
         user = session["user"]
+
         return render_template("user.html", name=user)
     else:
         return redirect(url_for("login"))
@@ -37,16 +45,21 @@ def user():
 @app.route("/wall", methods=["POST", "GET"])
 def wall():
     if "user" in session:
+        user = session["user"]
         if request.method == "POST":
-            post = request.form["post"]
-            user = session["user"]
-            date = datetime.today().strftime('%Y-%m-%d %H:%M')
-            model.addToTheWall(post, user, date)
-            return redirect(url_for("wall"))
-        else:
-            wallPosts = model.getPosts()
-            
-            return render_template("wall.html", posts=wallPosts)
+            if "post" in request.form:
+                post = request.form["post"]
+                date = datetime.today().strftime('%Y-%m-%d %H:%M')
+                model.addToTheWall(post, user, date)
+                return redirect(url_for("wall"))
+            elif "key" in request.form and user == "shabbs":
+                key = request.form["key"]
+                model.deleteRecord(key)
+                return redirect(url_for("wall"))
+        
+        wallPosts = model.getPosts()
+        
+        return render_template("wall.html", posts=wallPosts, admin=user=="shabbs")
     else:
         return redirect(url_for("login"))
 
