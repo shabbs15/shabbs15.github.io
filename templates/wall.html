@@ -3,6 +3,8 @@
 {% block content %}
 <div id = "wall">
 
+<h1>THE WALL</h1>
+
 <form method="post">
     <p>Leave a message in the wall, be nice :)</p>
     <textarea name="post" rows="7"></textarea>
@@ -15,7 +17,7 @@
     <div id="wallPost">
         <p>By {{post[2]}} on {{post[3]}} <br> 
         <div id="wallMessage">    
-            <div id="wallActualMessage">{{post[1]}} {{ admin }}</div>
+            <div id="wallActualMessage">{{post[1]}} </div>
 
             {% if admin %}
 
@@ -32,7 +34,11 @@
 {% endfor %}
 
 <br>
-<a href = {{  url_for("logout")  }}>logout</p>
+<a href = {{  url_for("logout")  }}>logout</a>
+
+<br><br>
+<footer><i>does this make me a full stack dev now?</i></footer>
+
 
 </div>
 {% endblock %}
