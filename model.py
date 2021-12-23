@@ -9,7 +9,7 @@ class model():
 
         self.cursor.execute("SELECT * FROM sqlite_master WHERE type = 'table' AND name = 'wall'")
         if self.cursor.fetchone() == None:
-            print("yoyoyoyooyoyoyoy")
+            print("yoyoyoyooyoyoyoya")
             self.initDatabase()
         else:
             print("homeboy I beg you")
