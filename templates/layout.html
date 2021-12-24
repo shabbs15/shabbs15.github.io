@@ -1,11 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    {% if title %}
-        <title>Shabbs - {{title}}</title>
-    {% else %}
-        <title>Shabbs</title>
-    {% endif %}
+    <title>Shabbs</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
@@ -25,12 +21,27 @@
         </div>
     {% endif %}
 
+    <nav>
+        <ul>
+            <li> <a href={{  url_for("home")  }}>home</a></li>
+            <li> <a href={{  url_for("login")  }}>login</a></li>
+            <li> <a href={{  url_for("wall")  }}>wall</a></li>
+            <li> <a href={{  url_for("ip")  }}>tracking</a></li>
+            <li> <a href={{  url_for("wall")  }}>blog (wip)</a></li>
+
+        </ul>
+    </nav>
+    
+    <div id = "main">
+
     {% block title %}{% endblock %}
 
     {% extends "flash.html" %}
 
-    {% block content %}{% endblock %}
-
+    {% block rest %} 
+            {% block content %} {% endblock %}
+        </div>
+    {% endblock %}
     
 </body>
 </html>

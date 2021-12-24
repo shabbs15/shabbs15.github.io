@@ -31,7 +31,7 @@ def login():
             flash("Login failed homeboy, stop tryna be a hackster")
             return redirect(url_for("login"))
     else:
-        return render_template("login.html", title = "login")
+        return render_template("login.html")
 
 @app.route("/user")
 def user():
