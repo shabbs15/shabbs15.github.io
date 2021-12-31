@@ -73,3 +73,10 @@ class model():
         """, (id,))
 
         self.conn.commit()
+
+    def deleteAllPosts(self):
+        self.cursor.execute("""
+        DELETE FROM wall;
+        """)
+        
+        self.conn.commit()

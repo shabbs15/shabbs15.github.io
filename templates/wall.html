@@ -11,6 +11,11 @@
     <input type="submit" name="name" id="submitPost">
 </form>
 
+{% if admin %}
+<form method="post">
+    <input type="submit" name = "deleteAll" value = "delete aa" id="deleteButton">
+</form>  
+{% endif %}
 
 {% for post in posts %}
     <br>
@@ -21,9 +26,11 @@
 
             {% if admin %}
 
+
+
             <div id = "deletePost">
             <form method="post">
-                <input type="hidden" name="key" value = {{post[0]}} >
+                <input type="hidden" name="key" value = {{post[0]}} minlength="2" maxlength="10">
                 <input type="submit" name = "delete" value = "delete aa" id="deleteButton">
             </form>
             </div>

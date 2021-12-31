@@ -50,8 +50,11 @@ def wall():
             if "post" in request.form:
                 post = request.form["post"]
                 date = datetime.today().strftime('%Y-%m-%d %H:%M')
-                model.addToTheWall(post, user, date)
+                if len(post) < 400: 
+                    model.addToTheWall(post, user, date)
                 return redirect(url_for("wall"))
+            elif "deleteAll" in request.form:
+                model.deleteAllPosts()
             elif "key" in request.form and user == "shabbs":
                 key = request.form["key"]
                 model.deleteRecord(key)
