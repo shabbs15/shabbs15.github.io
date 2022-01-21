@@ -1,10 +1,11 @@
-import sqlite3
+import sqlite3, os
 
 exampleMode = True
 
 class model():
     def __init__(self):
-        self.conn = sqlite3.connect("wall.db", check_same_thread=False)
+        path = os.path.dirname(os.getcwd()) + "/home/site/wwwroot/content/data/wall.db"
+        self.conn = sqlite3.connect(path, check_same_thread=False)
         self.cursor = self.conn.cursor()
 
         self.cursor.execute("SELECT * FROM sqlite_master WHERE type = 'table' AND name = 'user'")
