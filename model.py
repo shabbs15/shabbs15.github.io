@@ -7,6 +7,7 @@ class model():
         path = os.path.dirname(os.path.dirname(os.getcwd())) + "/home/site/wwwroot/content/data/wall.db"
         print(path)
         self.conn = sqlite3.connect(path, check_same_thread=False)
+        self.conn.execute('pragma journal_mode=wal')
         self.cursor = self.conn.cursor()
 
         self.cursor.execute("SELECT * FROM sqlite_master WHERE type = 'table' AND name = 'user'")
