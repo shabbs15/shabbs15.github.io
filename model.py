@@ -35,6 +35,7 @@ class model():
             Username Text,
             Password Text
         )""")
+        self.conn.commit()
 
     def getPosts(self):
         self.cursor.execute("""
