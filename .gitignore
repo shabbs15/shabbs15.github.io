@@ -3,3 +3,4 @@ venv/
 dbInit.py
 *.db
 notes.txt
+python/
