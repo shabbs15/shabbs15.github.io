@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block title%}
+<h1>Login</h1>
+{% endblock %}
+
+{% block content %}
+
+<form method="post">
+    <p>Alias: <input type="text" name="nm" minlength="2" maxlength="10" required autocomplete="off"></p>
+    <p>Code: <input type="text" name="code" minlength="2" maxlength="10" required autocomplete="off"></p>
+    <p><input type="submit" name="submit"></p>
+
+    <p>passwords stored in plaintext; so dont be retard</p>
+</form>
+{% endblock %}
