@@ -20,6 +20,8 @@ class model():
         for table, in tables:
             self.cursor.execute(f"DROP TABLE {table}")
 
+        print(self.cursor.fetchall())
+
         self.cursor.execute("""
         CREATE TABLE wall(
             PostId integer primary key,
