@@ -4,8 +4,7 @@ exampleMode = True
 
 class model():
     def __init__(self):
-        path = os.path.dirname(os.path.dirname(os.getcwd())) + "/home/site/wwwroot/content/data/wall.db"
-        print(path)
+        path = os.path.dirname(os.path.dirname(os.getcwd()))
         self.conn = sqlite3.connect(path, check_same_thread=False, isolation_level=None)
         self.conn.execute('pragma journal_mode=wal')
         self.cursor = self.conn.cursor()
